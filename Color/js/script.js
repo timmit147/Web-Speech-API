@@ -46,10 +46,12 @@ function rhyme(){
     if(input.value.slice(-2) == "en"){
         var str = input.value;
         var newStr = str.substring(0, str.length - 2);
-        console.log(endVowel(newStr) + newStr.split(endVowel(newStr))[1]+ "en");
+        // console.log(endVowel(newStr) + newStr.split(endVowel(newStr))[1]+ "en");
+        getrymes(endVowel(newStr) + newStr.split(endVowel(newStr))[1]+ "en");
  }
     else{
-        console.log(input.value.split(endVowel(input.value)).pop());
+        // console.log(input.value.split(endVowel(input.value)).pop());
+        getrymes(input.value.split(endVowel(input.value)).pop());
     }
 }
 
@@ -57,31 +59,28 @@ function endVowel(x){
     const match = x.match(/[aeiou](?!.*[aeiou])/i);
     return match ? match[0] : 'No match';
  }
+
+ function getrymes(word){
+    var str = "This product price is £15.00 and old price is £19.00 lopen gelopen kopen roken";
+    var r = getwoordenboek().split(" ").filter(function(n) {
+        if(n.includes(word)){
+            console.log(n);
+        }
+    });
+    }
+
+
+
  
 
+function getwoordenboek(){
+var woordenboek;
 
-// find word last a/e/i/ie/ee/aa/uu/eu/aa/oo/o/
-
-// get all letters after aa
-
-// Search if words contain letters  in txt file
-
-
-$.getJSON("taal.json", function(json) {
-    console.log(json); // this will show the info it in firebug console
+$.getJSON("taal2.json", function(json) {
+    woordenboek = json;
 });
 
+return woordenboek;
+}
 
-// const fs = require("fs");
-
-
-
-
-// fs.readFile(__dirname + "taal.txt", function (err, data) {
-//     if (err) throw err;
-
-//     if(data.endsWith('lopen')){
-//         console.log(data);
-     
-//     }
-//   });
+console.log(getwoordenboek());
